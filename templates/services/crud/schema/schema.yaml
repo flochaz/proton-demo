@@ -7,7 +7,7 @@ schema:
   types:
     CrudServiceInput:
       type: object
-      description: "Input properties for a Lambda data processing service."
+      description: "Input properties for a Lambda backed CRUD API. When given a resource name, this input will be used to generate Create, Read, Update and Delete API methods and lambdas."
       properties:
         resource_name:
           type: string
@@ -15,18 +15,12 @@ schema:
           minLength: 1
           maxLength: 50
           default: "task"
-        callback_handler:
+        resource_handler:
           type: string
-          description: "The path for the handler responsible for callbacks"
+          description: "The handler path to find the CRUD methods for this API"
           minLength: 1
           maxLength: 50
-          default: "callback.handler"
-        stream_handler:
-          type: string
-          description: "The path for the handler responsible for kinesis stream"
-          minLength: 1
-          maxLength: 50
-          default: "stream.handler"
+          default: "src/api"
         lambda_memory:
           type: number
           description: "The size of your Lambda functions in MB"
